@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 class Input extends React.Component {
   render() {
-    const { type, label, value, name, minLength=0, onChange } = this.props;
+    const { type, label, value, name, minLength = 0, onChange } = this.props;
     return (
       <div>
         <label htmlFor={ name }>
@@ -15,6 +15,7 @@ class Input extends React.Component {
             data-testid={ `${name}-input` }
             minLength={ minLength }
             onChange={ onChange }
+            required
           />
         </label>
       </div>
