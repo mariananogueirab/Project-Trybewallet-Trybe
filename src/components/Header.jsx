@@ -1,19 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import '../pages/wallet.css';
 
 class Header extends React.Component {
   render() {
     const { userEmail, userExpenses, userCurrency } = this.props;
     return (
       <header>
-        <div data-testid="email-field">{userEmail}</div>
         <div data-testid="total-field">
           {userExpenses.reduce((acc, curr) => acc + curr, 0)}
         </div>
         <div data-testid="header-currency-field">
           {userCurrency}
         </div>
+        <div data-testid="email-field">{userEmail}</div>
       </header>
     );
   }

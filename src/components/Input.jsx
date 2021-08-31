@@ -6,7 +6,7 @@ class Input extends React.Component {
     const { type, label, value, name, minLength = 0, onChange } = this.props;
     return (
       <div>
-        <label htmlFor={ name }>
+        <label htmlFor={ name } className="label">
           {label}
           <input
             type={ type }
@@ -16,6 +16,7 @@ class Input extends React.Component {
             minLength={ minLength }
             onChange={ onChange }
             required
+            className="input"
           />
         </label>
       </div>
