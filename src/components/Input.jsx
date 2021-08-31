@@ -17,6 +17,7 @@ class Input extends React.Component {
             onChange={ onChange }
             required
             className="input"
+            id={ name }
           />
         </label>
       </div>

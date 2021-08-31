@@ -9,6 +9,7 @@ class Header extends React.Component {
     return (
       <header>
         <div data-testid="total-field">
+          <span>Despesas Totais: </span>
           {userExpenses.reduce((acc, curr) => acc + curr, 0)}
         </div>
         <div data-testid="header-currency-field">
