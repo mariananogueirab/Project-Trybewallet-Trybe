@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Select extends React.Component {
   render() {
@@ -13,5 +14,11 @@ class Select extends React.Component {
     );
   }
 }
+
+Select.propTypes = {
+  name: PropTypes.string.isRequired,
+  datas: PropTypes.arrayOf(PropTypes.string).isRequired,
+  label: PropTypes.string.isRequired,
+};
 
 export default Select;
