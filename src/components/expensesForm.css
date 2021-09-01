@@ -1,0 +1,14 @@
+select {
+  background-color: #fad7f6;
+  border: 2px black solid;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-right: 5px;
+  padding: 5px;
+}
+
+.expensesForm {
+  align-content: space-between;
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -6,6 +6,7 @@ import Select from './Select';
 import SelectApi from './SelectApi';
 import { paymentMethods, tagSelect } from '../services/data';
 import { getCurrenciesThunk, setExpenses, setCurrency } from '../actions/index';
+import './expensesForm.css';
 
 class ExpensesForm extends React.Component {
   constructor(props) {
@@ -45,7 +46,7 @@ class ExpensesForm extends React.Component {
     const { valor, description, currency, payment, tag } = this.state;
     const { currencies } = this.props;
     return (
-      <div>
+      <div className="expensesForm">
         <Input
           type="text"
           label="Valor"
