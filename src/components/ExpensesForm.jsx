@@ -5,7 +5,7 @@ import Input from './Input';
 import Select from './Select';
 import SelectApi from './SelectApi';
 import { paymentMethods, tagSelect } from '../services/data';
-import { getCurrenciesThunk, setExpenses, setCurrency } from '../actions/index';
+import { getCurrenciesThunk, setCurrency, getExchangeRatesThunk } from '../actions/index';
 import './expensesForm.css';
 
 class ExpensesForm extends React.Component {
@@ -13,14 +13,16 @@ class ExpensesForm extends React.Component {
     super(props);
 
     this.state = {
-      valor: 0,
+      value: 0,
       description: '',
       currency: '',
-      payment: '',
+      method: '',
       tag: '',
+      exchangeRates: {},
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.onSubmmit = this.onSubmmit.bind(this);
   }
 
   componentDidMount() {
@@ -28,30 +30,33 @@ class ExpensesForm extends React.Component {
     getCurrencies();
   }
 
-  handleChange({ target }) {
+  onSubmmit() {
+    const { getExpensies, expenses } = this.props;
     this.setState({
-      [target.name]: target.value,
-    });
+      id: expenses.length,
+    }, () => getExpensies(this.state));
+  }
+
+  handleChange({ target }) {
     const { getCurrency } = this.props;
     if (target.name === 'currency') {
       getCurrency(target.value);
     }
+    this.setState({
+      [target.name]: target.value,
+    });
   }
 
-  /* onSubmmit() {
-
-  } */
-
   render() {
-    const { valor, description, currency, payment, tag } = this.state;
+    const { value, description, currency, method, tag } = this.state;
     const { currencies } = this.props;
     return (
       <div className="expensesForm">
         <Input
-          type="text"
+          type="number"
           label="Valor"
-          value={ valor }
-          name="valor"
+          value={ value }
+          name="value"
           onChange={ this.handleChange }
         />
         <Input
@@ -72,8 +77,8 @@ class ExpensesForm extends React.Component {
         <Select
           type="text"
           label="Método de Pagamento"
-          value={ payment }
-          name="payment"
+          value={ method }
+          name="method"
           data={ paymentMethods }
           onChange={ this.handleChange }
         />
@@ -93,18 +98,21 @@ class ExpensesForm extends React.Component {
 
 const mapStateToProps = (state) => ({
   currencies: state.wallet.currencies,
+  expenses: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getCurrencies: () => dispatch(getCurrenciesThunk()),
-  getExpensies: () => dispatch(setExpenses()),
   getCurrency: (currency) => dispatch(setCurrency(currency)),
+  getExpensies: (expense) => dispatch(getExchangeRatesThunk(expense)),
 });
 
 ExpensesForm.propTypes = {
   getCurrencies: PropTypes.func.isRequired,
   getCurrency: PropTypes.func.isRequired,
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
+  getExpensies: PropTypes.func.isRequired,
+  expenses: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExpensesForm);

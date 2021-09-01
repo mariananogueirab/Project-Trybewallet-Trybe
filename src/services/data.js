@@ -1,7 +1,7 @@
 export const paymentMethods = [
   'Dinheiro',
-  'Cartão de Crédito',
-  'Cartão de Débito',
+  'Cartão de crédito',
+  'Cartão de débito',
 ];
 
 export const tagSelect = [

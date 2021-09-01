@@ -4,7 +4,7 @@ export const TYPE_USER = 'TYPE_USER';
 export const TYPE_EXPENSES = 'TYPE_EXPENSES';
 export const GET_CURRENCIES_SUCCESS = 'GET_CURRENCIES_SUCCESS';
 export const GET_CURRENCY = 'GET_CURRENCY';
-/* export const GET_CURRENCIES_ERROR = 'GET_CURRENCIES_ERROR'; */
+export const SET_EXCHANGE_RATES = 'SET_EXCHANGE_RATES';
 
 export const setUser = (payload) => ({
   type: TYPE_USER,
@@ -31,3 +31,9 @@ export const setCurrency = (payload) => ({
   type: GET_CURRENCY,
   payload,
 });
+
+export const getExchangeRatesThunk = (payload) => async (dispatch) => {
+  const currencies = await getCurrencies();
+  payload.exchangeRates = currencies;
+  dispatch(setExpenses(payload));
+};

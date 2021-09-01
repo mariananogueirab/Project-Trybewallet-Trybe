@@ -3,7 +3,7 @@ import { GET_CURRENCIES_SUCCESS, TYPE_EXPENSES, GET_CURRENCY } from '../actions'
 
 const initialState = {
   currencies: [],
-  expenses: [0],
+  expenses: [],
   currency: 'BRL',
 };
 
